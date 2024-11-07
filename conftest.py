@@ -42,5 +42,6 @@ def login_user(driver, create_new_user):
 @pytest.fixture
 def make_order(driver, create_new_user, login_user):
     main_page = MainPage(driver)
+    main_page.open_url()
     main_page.drug_and_drop_element_bread_R2_D3_in_basket_list()
     main_page.click_on_make_order_button()

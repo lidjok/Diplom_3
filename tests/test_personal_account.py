@@ -6,20 +6,19 @@ from data import Url
 
 
 class TestPersonalAccount:
-    @pytest.fixture(autouse=True)
-    def setup(self, driver):
-
-        self.main_page = MainPage(driver)
-        self.login_page = LoginPage(driver)
 
     @allure.title('Проверка перехода по клику на «Личный кабинет» ')
     def test_login_personal_account(self, driver, create_new_user, login_user):
+        self.main_page = MainPage(driver)
+        self.login_page = LoginPage(driver)
         self.main_page.click_on_personal_account_link_header()
         assert self.login_page.find_element_with_wait_PROFILE_PERSONAL_ACC
 
 
     @allure.title('Проверка перехода в раздел «История заказов» ')
     def test_click_button_order_history(self, driver, create_new_user, login_user):
+        self.main_page = MainPage(driver)
+        self.login_page = LoginPage(driver)
         self.main_page.click_on_personal_account_link_header()
         self.login_page.find_element_with_wait_PROFILE_PERSONAL_ACC()
         self.login_page.click_on_order_history_button_PERSONAL_ACC()
@@ -28,6 +27,8 @@ class TestPersonalAccount:
 
     @allure.title('Проверка выхода из аккаунта')
     def test_logout_personal_account(self, driver, create_new_user, login_user):
+        self.main_page = MainPage(driver)
+        self.login_page = LoginPage(driver)
         self.main_page.click_on_personal_account_link_header()
         self.login_page.find_element_with_wait_PROFILE_PERSONAL_ACC()
         self.login_page.click_on_order_logout_button_PERSONAL_ACC()

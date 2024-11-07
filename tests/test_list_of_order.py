@@ -6,16 +6,11 @@ import pytest
 
 
 class TestListOfOrder:
-    @pytest.fixture(autouse=True)
-    def setup(self, driver):
-
-        self.main_page = MainPage(driver)
-        self.login_page = LoginPage(driver)
-        self.list_of_order_page = ListOfOrder(driver)
-        self.main_page.open_url()
 
     @allure.title('Проверка - при клике на заказ, откроется всплывающее окно с деталями')
     def test_make_order_authorized_user(self, driver, make_order):
+        self.main_page = MainPage(driver)
+        self.list_of_order_page = ListOfOrder(driver)
         self.main_page.wait_to_get_actual_order_number()
         self.main_page.click_on_close_button_identifier_modal_window()
         self.main_page.click_on_list_of_order_link_header()
@@ -24,6 +19,9 @@ class TestListOfOrder:
 
     @allure.title('Проверка - заказы пользователя из раздела «История заказов» отображаются на странице «Лента заказов». роверяем сравнением значений через полученнный номер нового заказа')
     def test_orders_number_in_iw_similar_in_order_history(self, driver, make_order):
+        self.main_page = MainPage(driver)
+        self.login_page = LoginPage(driver)
+        self.list_of_order_page = ListOfOrder(driver)
         get_number_of_new_order = self.main_page.wait_to_get_actual_order_number()
         self.main_page.click_on_close_button_identifier_modal_window()
         self.main_page.click_on_personal_account_link_header()
@@ -35,6 +33,8 @@ class TestListOfOrder:
 
     @allure.title('при создании нового заказа счётчик Выполнено за всё время увеличивается')
     def test_make_order_counter_of_all_orders_increase(self, driver, create_new_user, login_user):
+        self.main_page = MainPage(driver)
+        self.list_of_order_page = ListOfOrder(driver)
         self.main_page.click_on_list_of_order_link_header()
         counter_element_before_order = self.list_of_order_page.find_element_with_wait_text_number_off_orders_all()
         initial_counter_value = int(counter_element_before_order.text)
@@ -50,7 +50,8 @@ class TestListOfOrder:
 
     @allure.title('роверка - при создании нового заказа счётчик Выполнено за сегодня увеличивается')
     def test_make_order_counter_of_today_orders_increase(self, driver, create_new_user, login_user):
-        self.main_page.open_url()
+        self.main_page = MainPage(driver)
+        self.list_of_order_page = ListOfOrder(driver)
         self.main_page.click_on_list_of_order_link_header()
         counter_element_before_order = self.list_of_order_page.find_element_with_wait_text_number_off_orders_for_today()
         initial_counter_value = int(counter_element_before_order.text)
@@ -66,6 +67,8 @@ class TestListOfOrder:
 
     @allure.title('после оформления заказа его номер появляется в разделе В работе')
     def test_make_order_number_in_list_in_status_at_work(self, driver, create_new_user, login_user):
+        self.main_page = MainPage(driver)
+        self.list_of_order_page = ListOfOrder(driver)
         self.main_page.drug_and_drop_element_bread_R2_D3_in_basket_list()
         self.main_page.click_on_make_order_button()
         expected_value = self.main_page.wait_to_get_actual_order_number()

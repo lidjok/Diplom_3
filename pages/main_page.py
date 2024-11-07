@@ -78,9 +78,6 @@ class MainPage(BasePage):
     def click_on_close_button_identifier_modal_window(self):
         self.click_on_element(MainPageLocators.BUTTON_CLOSE_ORDER_IDENTIFIER_MODAL_WINDOW)
 
-    @allure.step('Проверка появления номера заказа в окне "идентификатор заказа"')
-    def find_element_with_wait_order_number_identifier_of_order(self):
-        return self.find_element_with_wait(MainPageLocators.find_element_with_wait_order_number_identifier_of_order)
 
     @allure.step('Drug and drop лемента булочка x в корзину')
     def drug_and_drop_element_bread_R2_D3_in_basket_list(self):

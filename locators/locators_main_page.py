@@ -17,7 +17,7 @@ class MainPageLocators:
 
     LINK_COLLECT_BURGER_SAUCER = By.XPATH, "//span[@class='text text_type_main-default' and contains(text(), 'Соусы')]"
     SAUCER_SPICY_X_SAUCER_COLLECT_BURGER = By.XPATH, ".//img[@alt = 'Соус Spicy-X']"
-    BASKET_LIST_AREA = By.CSS_SELECTOR, ".BurgerConstructor_basket__29Cd7"
+    BASKET_LIST_AREA = By.XPATH, ".//div[contains(@class, 'constructor-element_pos_top')]"
     COUNTER_ELEMENT_SPICY_X_SAUCER_COLLECT_BURGER = By.XPATH, "//a[@href='/ingredient/61c0c5a71d1f82001bdaaa72']//p[@class='counter_counter__num__3nue1']"
     MAKE_ORDER_BUTTON = By.XPATH, ".//button[text() = 'Оформить заказ']"
     ORDER_IDENTIFIER_MODAL_WINDOW = By.XPATH, "//p[@class='undefined text text_type_main-medium mb-15' and contains(text(), 'идентификатор заказа')]"
